@@ -8,25 +8,30 @@ struct Juice {
   int price;
 };
 
-struct JuiceInfo {
+struct JuiceStockInfo {
   Juice juice;
-  int stock;
+  int num;
 };
 
 class Jihanki {
   public:
     Jihanki() : totalMoney(0) {
       Juice cola = {"cola", 120};
-      JuiceInfo colaInfo = {cola, 5};
-      JuiceList.push_back(colaInfo);
+      JuiceStockInfo colaInfo = {cola, 5};
+      juiceStockList.push_back(colaInfo);
     }
 
-    int insert(int money) {
+    std::pair<int,std::vector<Juice>> insert(int money) {
+      std::vector<Juice> list;
+
       if(isExpected(money)){
         totalMoney += money;
-        return 0;
+        for(auto juiceStock : juiceStockList)
+          if(totalMoney >= juiceStock.juice.price) list.push_back(juiceStock.juice);
+
+        return std::make_pair(0, list);
       }
-      return money;
+      return std::make_pair(money, list);
     }
 
     int getTotalMoney() {
@@ -39,13 +44,13 @@ class Jihanki {
       return tmp;
     }
 
-    std::vector<JuiceInfo> getJuiceList() {
-      return JuiceList;
+    std::vector<JuiceStockInfo> getJuiceStockInfoList() {
+      return juiceStockList;
     }
 
   private:
     int totalMoney;
-    std::vector<JuiceInfo> JuiceList;
+    std::vector<JuiceStockInfo> juiceStockList;
 
     bool isExpected(int money) {
       const static std::vector<int> list = {10, 50, 100, 500, 1000};
