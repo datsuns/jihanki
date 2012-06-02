@@ -12,19 +12,14 @@ class JihankiTest : public ::testing::Test {
 		Jihanki jihanki;
 };
 
-TEST_F( JihankiTest, test ){
-}
-
-TEST(TestJihanki, InsertRetrunCharge) {
-  Jihanki jihanki;
+TEST_F( JihankiTest, InsertRetrunCharge ){
   ASSERT_EQ(1, jihanki.insert(1));
   ASSERT_EQ(5, jihanki.insert(5));
   ASSERT_EQ(300, jihanki.insert(300));
   ASSERT_EQ(1001, jihanki.insert(1001));
 }
 
-TEST(TestJihanki, InsertMoney) {
-  Jihanki jihanki;
+TEST_F( JihankiTest, InsertMoney ){
   ASSERT_EQ(0, jihanki.insert(10));
   ASSERT_EQ(0, jihanki.insert(50));
   ASSERT_EQ(0, jihanki.insert(100));
@@ -32,16 +27,13 @@ TEST(TestJihanki, InsertMoney) {
   ASSERT_EQ(0, jihanki.insert(1000));
 }
 
-TEST(TestJihanki, MultiInsert) {
-  Jihanki jihanki;
+TEST_F( JihankiTest, MultiInsert ){
   ASSERT_EQ(0, jihanki.insert(10));
   ASSERT_EQ(0, jihanki.insert(10));
   ASSERT_EQ(0, jihanki.insert(10));
 }
 
-TEST(TestJihanki, GetTotalMoney) {
-  Jihanki jihanki;
-
+TEST_F( JihankiTest, GetTotalMoney ){
   ASSERT_EQ(0, jihanki.getTotalMoney());
 }
 
