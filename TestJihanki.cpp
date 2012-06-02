@@ -1,6 +1,20 @@
 #include <gtest/gtest.h>
 #include "Jihanki.cpp"
 
+class JihankiTest : public ::testing::Test {
+	public:
+		virtual void SetUp() {
+		}
+
+		virtual void TearDown() {
+		}
+	protected:
+		Jihanki jihanki;
+};
+
+TEST_F( JihankiTest, test ){
+}
+
 TEST(TestJihanki, InsertRetrunCharge) {
   Jihanki jihanki;
   ASSERT_EQ(1, jihanki.insert(1));
