@@ -48,13 +48,8 @@ class Jihanki {
     std::vector<JuiceInfo> JuiceList;
 
     bool isExpected(int money) {
-      std::vector<int> list /* = {10, 50, 100, 500, 1000}; */;
-      list.push_back(10);
-      list.push_back(50);
-      list.push_back(100);
-      list.push_back(500);
-      list.push_back(1000);
-      if(std::find(list.begin(), list.end(), money) != list.end()) return true;
+      const static int list[5] = {10, 50, 100, 500, 1000};
+      if(std::find(list, list+5, money) != list+5) return true;
       return false;
     }
 };
