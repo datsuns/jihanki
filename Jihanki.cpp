@@ -10,6 +10,7 @@ public:
   }
 
   int getTotalMoney(void) {
+	  return 0;
   }
 
 private:

@@ -30,3 +30,4 @@ TEST(TestJihanki, GetTotalMoney) {
 
   ASSERT_EQ(0, jihanki.getTotalMoney());
 }
+
