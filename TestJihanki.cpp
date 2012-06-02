@@ -10,6 +10,7 @@ class JihankiTest : public ::testing::Test {
 		}
 	protected:
 		Jihanki jihanki;
+		Juice cola = { "cola", 120 };
 };
 
 TEST_F( JihankiTest, InsertRetrunCharge ){
@@ -90,4 +91,16 @@ TEST_F( JihankiTest, GetJuiceList ) {
 TEST_F( JihankiTest, GetJuiceEmptyList ) {
   auto list = jihanki.insert(100).second;
 	ASSERT_EQ(list.size(), 0);
+}
+
+TEST_F( JihankiTest, CheckCharge ) {
+	jihanki.insert(1000);
+	ASSERT_EQ(jihanki.buy("cola").first, 880 );
+	ASSERT_EQ(jihanki.getTotalMoney(), 0 );
+}
+
+TEST_F( JihankiTest, CheckCharge2 ) {
+	jihanki.insert(500);
+	ASSERT_EQ(jihanki.buy("cola").first, 380 );
+	ASSERT_EQ(jihanki.getTotalMoney(), 0 );
 }
