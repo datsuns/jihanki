@@ -60,4 +60,20 @@ TEST_F( JihankiTest, GetTotalMoney4 ){
 	ASSERT_EQ(110, jihanki.getTotalMoney());
 }
 
+TEST_F( JihankiTest, InitialPayBack ){
+	ASSERT_EQ(0, jihanki.payBack());
+}
 
+TEST_F( JihankiTest, PayBack ){
+	jihanki.insert(100);
+	ASSERT_EQ(100, jihanki.payBack());
+	ASSERT_EQ(0, jihanki.getTotalMoney());
+}
+
+TEST_F( JihankiTest, GetJuiceInfo ){
+  std::vector<JuiceInfo> list = jihanki.getJuiceList();
+	ASSERT_GE(1,      list.size());
+	ASSERT_EQ("cola", list[0].juice.name);
+	ASSERT_EQ(120,    list[0].juice.price);
+	ASSERT_EQ(5,      list[0].stock);
+}
