@@ -4,16 +4,23 @@
 
 class Jihanki {
 public:
+	Jihanki( void ){ totalMoney = 0; }
+
   int insert(int money) {
-    if(isExpected(money)) return 0;
+    if(isExpected(money)){
+		totalMoney += money;
+		return 0;
+	}
     return money;
   }
 
   int getTotalMoney(void) {
-	  return 0;
+	  return totalMoney;
   }
 
 private:
+  int totalMoney;
+
   bool isExpected(int money) {
     std::vector<int> list /* = {10, 50, 100, 500, 1000}; */;
     list.push_back(10);
