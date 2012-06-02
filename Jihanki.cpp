@@ -15,7 +15,7 @@ struct JuiceInfo {
 
 class Jihanki {
   public:
-    Jihanki( void ) : totalMoney(0) {
+    Jihanki() : totalMoney(0) {
       Juice cola = {"cola", 120};
       JuiceInfo colaInfo = {cola, 5};
       JuiceList.push_back(colaInfo);
@@ -29,11 +29,11 @@ class Jihanki {
       return money;
     }
 
-    int getTotalMoney(void) {
+    int getTotalMoney() {
       return totalMoney;
     }
 
-    int payBack(void) {
+    int payBack() {
       int tmp = totalMoney;
       totalMoney = 0;
       return tmp;
@@ -48,8 +48,8 @@ class Jihanki {
     std::vector<JuiceInfo> JuiceList;
 
     bool isExpected(int money) {
-      const static int list[5] = {10, 50, 100, 500, 1000};
-      if(std::find(list, list+5, money) != list+5) return true;
+      const static std::vector<int> list = {10, 50, 100, 500, 1000};
+      if(std::find(list.begin(), list.end(), money) != list.end()) return true;
       return false;
     }
 };

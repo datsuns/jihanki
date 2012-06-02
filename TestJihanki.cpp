@@ -77,3 +77,4 @@ TEST_F( JihankiTest, GetJuiceInfo ){
 	ASSERT_EQ(120,    list[0].juice.price);
 	ASSERT_EQ(5,      list[0].stock);
 }
+
