@@ -2,6 +2,7 @@
 #include <vector>
 #include <string>
 #include <algorithm>
+#include <boost/optional.hpp>
 
 struct Juice {
   std::string name;
@@ -16,9 +17,7 @@ struct JuiceStockInfo {
 class Jihanki {
   public:
     Jihanki() : totalMoney(0) {
-      Juice cola = {"cola", 120};
-      JuiceStockInfo colaInfo = {cola, 5};
-      juiceStockList.push_back(colaInfo);
+      juiceStockList.push_back({{"cola", 120}, 5});
     }
 
     std::pair<int,std::vector<Juice>> insert(int money) {
@@ -48,18 +47,17 @@ class Jihanki {
       return juiceStockList;
     }
 
-    std::pair<int,Juice> buy(std::string name) {
-        for(auto juiceStock : juiceStockList)
-			if( juiceStock.juice.price < totalMoney ){
-				Juice empty = {"", 0};
-				return std::make_pair(totalMoney, empty);
-			}
+    std::pair<int, boost::optional<Juice>> buy(const std::string &name) {
+      int tmp = totalMoney;
+      totalMoney = 0;
 
-		if( totalMoney < 
-		Juice juice = {"cola", 120};
-		totalMoney = 0;
-		return std::make_pair(880, juice );
-	}
+      const Juice &cola = juiceStockList[0].juice;
+      if( tmp < cola.price ){
+        return std::make_pair(tmp, boost::none);
+      }
+
+      return std::make_pair(tmp-cola.price, cola);
+    }
 
   private:
     int totalMoney;
