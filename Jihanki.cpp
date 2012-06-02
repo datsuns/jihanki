@@ -48,6 +48,19 @@ class Jihanki {
       return juiceStockList;
     }
 
+    std::pair<int,Juice> buy(std::string name) {
+        for(auto juiceStock : juiceStockList)
+			if( juiceStock.juice.price < totalMoney ){
+				Juice empty = {"", 0};
+				return std::make_pair(totalMoney, empty);
+			}
+
+		if( totalMoney < 
+		Juice juice = {"cola", 120};
+		totalMoney = 0;
+		return std::make_pair(880, juice );
+	}
+
   private:
     int totalMoney;
     std::vector<JuiceStockInfo> juiceStockList;
